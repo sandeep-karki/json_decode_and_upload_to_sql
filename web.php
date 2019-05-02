@@ -4,12 +4,12 @@
 
 Route::get('/', function () {
 	$path = public_path() . "/resturants.json";
+	//get json data
 	$json = file_get_contents($path);
 	if ($json != null) {
 		$decoded=json_decode($json,true);
 		if (is_array($decoded["vendors"])) {
 			foreach ($decoded["vendors"] as $vendor) {
-				// dd($vendor);
 				$resturant = new Resturant();
 				$resturant->id = $vendor['Id'];
 				$resturant->image = $vendor['Image'];
